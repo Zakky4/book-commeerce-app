@@ -1,9 +1,15 @@
 "use client";
+
 import Image from "next/image";
+import { BookType } from "../types/types";
 import Link from "next/link";
 
+type BookProps = {
+  book: BookType;
+};
+
 // eslint-disable-next-line react/display-name
-const Book = ({ book }: any) => {
+const Book = ({ book }: BookProps) => {
   return (
     <>
       {/* アニメーションスタイル */}
