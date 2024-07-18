@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { memo, useEffect, useReducer, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { BookType } from "../types/types";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -14,28 +14,22 @@ type BookProps = {
 // eslint-disable-next-line react/display-name
 const Book = ({ book }: BookProps) => {
   const [showModal, setShowModal] = useState(false);
-  const {data: session} = useSession();
-  const user = session?.user;
-  const router = useRouter();
+  // const {data: session} = useSession();
+  // const user = session?.user;
+  // const router = useRouter();  // ここでuseRouterを使用
 
   const handlePurchaseClick = () => {
-    // if (!isPurchased) {
     setShowModal(true);
-    // } else {
-    // ここで既に購入済みであることをユーザーに通知する処理を追加できます。
-    // 例: アラートを表示する、またはUI上でメッセージを表示する。
-    // alert("その商品は購入済みです。");
-    // }
   };
 
   const handlePurchaseConfirm = () => {
-    if (!user) {
-      setShowModal(false); // モーダルを閉じる
-      router.push("/login");
-    } else {
-      //Stripe購入画面へ。購入済みならそのまま本ページへ。
-      // startCheckout(book.id);
-    }
+    // if (!user) {
+    //   setShowModal(false);
+    //   router.push("/login");  // ここでrouterを使用
+    // } else {
+    //   //Stripe購入画面へ。購入済みならそのまま本ページへ。
+    //   // startCheckout(book.id);
+    // }
   };
 
   const handleCancel = () => {
