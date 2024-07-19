@@ -18,6 +18,39 @@ const Book = ({ book }: BookProps) => {
   // const user = session?.user;
   // const router = useRouter();  // ここでuseRouterを使用
 
+  //stripe checkout
+  // const startCheckout = async (bookId: number) => {
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           bookId,
+  //           title: book.title,
+  //           price: book.price,
+  //           userId: user?.id,
+  //         }),
+  //       }
+  //     );
+
+  //     const responseData = await response.json();
+
+  //     if (responseData && responseData.checkout_url) {
+  //       sessionStorage.setItem("stripeSessionId", responseData.session_id);
+
+  //       //チェックアウト後のURL遷移先
+  //       router.push(responseData.checkout_url);
+  //     } else {
+  //       console.error("Invalid response data:", responseData);
+  //     }
+  //   } catch (err) {
+  //     console.error("Error in startCheckout:", err);
+  //     // エラー時の処理
+  //   }
+  // };
+
   const handlePurchaseClick = () => {
     setShowModal(true);
   };
