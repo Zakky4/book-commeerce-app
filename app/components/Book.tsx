@@ -52,7 +52,13 @@ const Book = ({ book }: BookProps) => {
   // };
 
   const handlePurchaseClick = () => {
-    setShowModal(true);
+    // if (!isPurchased) {
+      setShowModal(true);
+    // } else {
+    //   // ここで既に購入済みであることをユーザーに通知する処理を追加できます。
+    //   // 例: アラートを表示する、またはUI上でメッセージを表示する。
+    //   alert("その商品は購入済みです。");
+    // }
   };
 
   const handlePurchaseConfirm = () => {
