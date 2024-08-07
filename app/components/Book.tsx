@@ -65,6 +65,7 @@ const Book = ({ book }: BookProps) => {
     // if (!user) {
     //   setShowModal(false);
     //   router.push("/login");  // ここでrouterを使用
+    //   router.push("api/auth/signin");  // NextAuth apiを使用
     // } else {
     //   //Stripe購入画面へ。購入済みならそのまま本ページへ。
     //   // startCheckout(book.id);
