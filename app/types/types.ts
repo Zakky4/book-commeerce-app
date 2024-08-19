@@ -1,5 +1,5 @@
 type BookType = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   content: string;

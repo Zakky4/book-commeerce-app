@@ -1,12 +1,10 @@
-// "use client";
-
 import Book from "./components/Book";
 import { BookType, Purchase } from "./types/types";
 import { getAllBooks } from "./lib/microcms/client";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "./lib/next-auth/options";
 import { Suspense } from "react";
-// import Loading from "./loading";
+import Loading from "./loading";
 // import { getServerSession } from "next-auth";
 // import { nextAuthOptions } from "./lib/next-auth/options";
 
@@ -65,13 +63,13 @@ export default async function Home() {
   const user: any = session?.user;
 
   const { contents } = await getAllBooks();
-  // const response = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
-  // );
-  // const purchasesData = await response.json();
-  // const purchasedIds = purchasesData.map(
-  //   (purchase: Purchase) => purchase.bookId
-  // );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
+  );
+  const purchasesData = await response.json();
+  const purchasedIds = purchasesData.map(
+    (purchase: Purchase) => purchase.bookId
+  );
   // const { data: session } = useSession();
   // const user: any = session?.user;
 
@@ -111,12 +109,11 @@ export default async function Home() {
             <Book
               key={book.id}
               book={book}
-              // user={user}
-              // isPurchased={purchasedIds.includes(book.id)}
+              user={user}
+              isPurchased={purchasedIds.includes(book.id)}
             />
           ))}
       </main>
     </>
   );
 }
-

@@ -1,12 +1,12 @@
 // "use client";
 
-// import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import PurchaseProduct from "../components/PurchaseProduct";
 import { getDetailBook } from "../lib/microcms/client";
 import { BookType, Purchase, User } from "../types/types";
-// import Loading from "../loading";
+import Loading from "../loading";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../lib/next-auth/options";
 
@@ -17,20 +17,20 @@ export default async function ProfilePage() {
   const session = await getServerSession(nextAuthOptions);
   const user: any = session?.user;
 
-//   const response = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
-//   );
-//   const data = await response.json();
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
+  );
+  const data = await response.json();
 
-  // 各購入履歴に対してmicroCMSから詳細情報を取得
-//   const detailBooks = await Promise.all(
-//     data.map(async (purchase: Purchase) => {
-//       console.log(purchase.bookId);
-//       const res = await getDetailBook(purchase.bookId);
-//       console.log(res);
-//       return await getDetailBook(purchase.bookId);
-//     })
-//   );
+  // // 各購入履歴に対してmicroCMSから詳細情報を取得
+  const detailBooks = await Promise.all(
+    data.map(async (purchase: Purchase) => {
+      console.log(purchase.bookId);
+      const res = await getDetailBook(purchase.bookId);
+      console.log(res);
+      return await getDetailBook(purchase.bookId);
+    })
+  );
 
   return (
     <div className="container mx-auto p-4">
@@ -52,11 +52,9 @@ export default async function ProfilePage() {
 
       <span className="font-medium text-lg mb-4 mt-4 block">購入した記事</span>
       <div className="flex items-center gap-6">
-        {/* 
         {detailBooks.map((detailBook: BookType) => (
           <PurchaseProduct key={detailBook.id} detailBook={detailBook} />
         ))}
-        */}
       </div>
     </div>
   );
